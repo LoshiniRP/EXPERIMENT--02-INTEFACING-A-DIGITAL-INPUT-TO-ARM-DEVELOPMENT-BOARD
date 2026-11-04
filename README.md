@@ -74,10 +74,9 @@ The full form of an ARM is an advanced reduced instruction set computer (RISC) m
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "stdbool.h"
-bool button;
-void led_blink();
-
+#include <stdbool.h>
+void push_button();
+bool pb;
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -151,29 +150,22 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
-	  led_blink();
-    /* USER CODE BEGIN 3 */
+	  push_button();
+  /* USER CODE BEGIN 3 */
   }
-  /* USER CODE END 3 */
 }
-
-void led_blink()
+void push_button()
 {
-	button = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
-	if(button==0)
+	pb=HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_0);
+	if(pb==0)
 	{
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-		HAL_Delay(1000);
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-		HAL_Delay(1000);
+		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_SET);
 	}
 	else
 	{
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-		HAL_Delay(1000);
+		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_RESET);
 	}
-}
+ }
 
 /**
   * @brief System Clock Configuration
@@ -188,7 +180,6 @@ void SystemClock_Config(void)
   */
   __HAL_RCC_PWR_CLK_ENABLE();
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
-
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
@@ -200,7 +191,6 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-
   /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
@@ -285,9 +275,12 @@ void assert_failed(uint8_t *file, uint32_t line)
 
 
 ## Output  :
- 
+<img width="1600" height="1200" alt="1" src="https://github.com/user-attachments/assets/40dcd3f0-bd8b-4f76-a648-49c10f748f84" />
+<img width="979" height="1338" alt="2" src="https://github.com/user-attachments/assets/5871f645-aa5f-4f83-bcfb-e7821f12134a" />
+
+
 ## Layout of the circuit :
-<img width="1920" height="1080" alt="Screenshot 2026-10-30 185406" src="https://github.com/user-attachments/assets/265af752-5097-4f16-a75a-fd81b0361d7c" />
+<img width="932" height="851" alt="image" src="https://github.com/user-attachments/assets/9bc0078c-ddd4-46ea-82ab-d89522eb8c06" />
 
 
  
